@@ -65,6 +65,8 @@ spec:
                 description: Provider represents the cloud provider name of the member
                   cluster.
                 type: string
+              proxy:
+                type: string
               region:
                 description: Region represents the region of the member cluster locate
                   in.

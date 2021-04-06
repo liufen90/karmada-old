@@ -266,7 +266,14 @@ func RunJoin(cmdOut io.Writer, karmadaConfig KarmadaConfig, opts CommandJoinOpti
 	if clusterConfig.TLSClientConfig.Insecure {
 		clusterObj.Spec.InsecureSkipTLSVerification = true
 	}
-
+	if clusterConfig.Proxy != nil {
+				url, err := clusterConfig.Proxy(nil)
+						if err != nil {
+										klog.Errorf("clusterConfig.Proxy ERROR")
+													return err
+															}
+																	clusterObj.Spec.Proxy = url.String()
+																		}
 	cluster, err := CreateClusterObject(controlPlaneKarmadaClient, clusterObj, false)
 	if err != nil {
 		klog.Errorf("failed to create cluster object. cluster name: %s, error: %v", opts.ClusterName, err)

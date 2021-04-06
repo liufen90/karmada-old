@@ -130,6 +130,12 @@ func buildClusterConfig(cluster *v1alpha1.Cluster, client client.Client) (*rest.
 	} else {
 		clusterConfig.CAData = secret.Data[cADataKey]
 	}
-
+	if cluster.Spec.Proxy != nil {
+				proxy, err := url.Parse(cluster.Spec.Proxy)
+						if err != nil {
+										return nil, err
+												}
+														clusterConfig.Proxy = http.ProxyURL(proxy)
+															}
 	return clusterConfig, nil
 }

@@ -71,6 +71,8 @@ type ClusterSpec struct {
 	// any resource that does not tolerate the Taint.
 	// +optional
 	Taints []corev1.Taint `json:"taints,omitempty"`
+
+	Proxy string `json:"proxy,omitempty"`
 }
 
 // ClusterSyncMode describes the mode of synchronization between member cluster and karmada control plane.
